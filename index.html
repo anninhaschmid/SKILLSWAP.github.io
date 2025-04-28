@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão RDS - Plataforma Definitiva</title>
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968332.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        fontFamily: {
+          sans: ['Poppins', 'sans-serif'],
+        },
+        extend: {
+          colors: {
+            primary: '#0F172A',
+            secondary: '#1E293B',
+            accent: '#F97316',
+            backgroundLight: '#F8FAFC',
+            backgroundDark: '#0F172A'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html, body {
+      scroll-behavior: smooth;
+      transition: background-color 0.5s, color 0.5s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn-accent {
+      @apply bg-accent hover:bg-orange-600 text-white px-8 py-3 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105;
+    }
+    #theme-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Loading Spinner */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #f97316;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body class="bg-backgroundLight dark:bg-backgroundDark text-gray-800 dark:text-white min-h-screen leading-relaxed">
+
+  <!-- Loading Spinner -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed w-full z-50 bg-white/80 dark:bg-secondary/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="text-2xl font-bold text-accent">RDS<span class="text-gray-700 dark:text-gray-300">.</span></div>
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#features" class="hover:text-accent transition">Recursos</a>
+        <a href="#about" class="hover:text-accent transition">Sobre</a>
+        <a href="#contact" class="hover:text-accent transition">Contato</a>
+        <a href="https://gestao.mysoftwares.com.br/Account/Login?ReturnUrl=/" target="_blank" class="hover:text-accent transition">Acessar</a>
+      </nav>
+      <button onclick="toggleTheme()" class="text-2xl ml-4" id="theme-icon" aria-label="Alternar Tema">
+        🌙
+      </button>
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-2xl" onclick="toggleMobileMenu()" id="mobile-menu-button">
+        🍔
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute top-16 left-0 right-0 bg-white dark:bg-secondary px-6 py-4 shadow-lg">
+      <nav>
+        <a href="#features" class="block text-sm font-medium text-gray-800 dark:text-white hover:text-accent transition mb-4">Recursos</a>
+        <a href="#about" class="block text-sm font-medium text-gray-800 dark:text-white hover:text-accent transition mb-4">Sobre</a>
+        <a href="#contact" class="block text-sm font-medium text-gray-800 dark:text-white hover:text-accent transition mb-4">Contato</a>
+        <a href="https://gestao.mysoftwares.com.br/Account/Login?ReturnUrl=/" target="_blank" class="block text-sm font-medium text-gray-800 dark:text-white hover:text-accent transition">Acessar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="flex flex-col items-center justify-center text-center pt-40 pb-24 px-6 fade-up">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-accent mb-6 leading-tight">Gestão RDS</h1>
+    <p class="text-lg md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">A plataforma inteligente para a gestão e otimização de processos corporativos.</p>
+    <a href="#features" class="btn-accent">Saiba Mais</a>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-accent mb-12">Principais Recursos</h2>
+      <div class="grid gap-10 md:grid-cols-3">
+        <div class="bg-white dark:bg-secondary rounded-lg shadow hover:shadow-lg p-8 transition">
+          <h3 class="text-xl font-semibold text-accent mb-4">Cadastro Ágil</h3>
+          <p class="text-gray-700 dark:text-gray-300">Registre usuários e contas de forma segura e rápida.</p>
+        </div>
+        <div class="bg-white dark:bg-secondary rounded-lg shadow hover:shadow-lg p-8 transition">
+          <h3 class="text-xl font-semibold text-accent mb-4">Gestão Simplificada</h3>
+          <p class="text-gray-700 dark:text-gray-300">Controle permissões e dados de forma eficiente.</p>
+        </div>
+        <div class="bg-white dark:bg-secondary rounded-lg shadow hover:shadow-lg p-8 transition">
+          <h3 class="text-xl font-semibold text-accent mb-4">Suporte Especializado</h3>
+          <p class="text-gray-700 dark:text-gray-300">Equipe pronta para dar suporte às suas operações.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-white dark:bg-secondary fade-up">
+    <div class="max-w-5xl mx-auto text-center px-6">
+      <h2 class="text-3xl font-bold text-accent mb-6">Sobre a Plataforma</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+        A Gestão RDS foi criada pela RDS Desenvolvimento de Softwares com o propósito de transformar o gerenciamento de dados empresariais,
+        aliando inovação, desempenho e segurança em uma solução moderna e intuitiva.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 fade-up">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-3xl font-bold text-accent mb-8">Fale Conosco</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">
+        Entre em contato pelo e-mail: 
+        <a href="mailto:contato@mysoftwares.com.br" class="text-accent hover:underline">contato@mysoftwares.com.br</a>
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-400">CNPJ: 43.996.939/0001-27</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 dark:bg-secondary py-6 text-center text-gray-600 dark:text-gray-400 text-sm">
+    <p>© 2025 RDS Desenvolvimento de Softwares. Todos os direitos reservados.</p>
+    <p><a href="https://gestao.mysoftwares.com.br/Account/Login?ReturnUrl=%2F" target="_blank" class="text-accent hover:underline">gestao.mysoftwares.com.br</a></p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      html.classList.toggle('dark');
+      themeIcon.innerHTML = html.classList.contains('dark') 
+        ? '🌞' 
+        : '🌙';
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+
+    window.onload = () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').innerHTML = '🌞';
+      }
+
+      // Fade in animation
+      const faders = document.querySelectorAll('.fade-up');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.2 });
+
+      faders.forEach(el => observer.observe(el));
+
+      // Hide the loading spinner
+      document.getElementById('loading').style.display = 'none';
+    };
+  </script>
+
+</body>
+</html>
