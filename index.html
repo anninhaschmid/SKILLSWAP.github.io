@@ -176,8 +176,8 @@
       const iconeTema = document.getElementById('icone-tema');
       html.classList.toggle('dark');
       iconeTema.innerHTML = html.classList.contains('dark') 
-        ? '🌞' 
-        : '🌙';
+        ? 'modoclaro'; 
+        : 'modoescuro';
       localStorage.setItem('tema', html.classList.contains('dark') ? 'dark' : 'light');
     }
 
